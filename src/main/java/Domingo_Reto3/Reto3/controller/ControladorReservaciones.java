@@ -1,5 +1,18 @@
-package Domingo_Reto3.Reto3;
+package Domingo_Reto3.Reto3.controller;
 
+/**
+ * Controlador de los servicios CRUD de la tabla Reservaciones
+ * 
+ * @since 2021-10-22
+ * @version 3.0
+ * @author Mateo Pachón
+ * 
+ */
+
+import Domingo_Reto3.Reto3.model.ContadorClientes;
+import Domingo_Reto3.Reto3.service.ServiciosReservaciones;
+import Domingo_Reto3.Reto3.model.Reservaciones;
+import Domingo_Reto3.Reto3.model.StatusReservas;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *
- * @author USUARIO
- */
+
 @RestController
 @RequestMapping("/api/Reservation")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
@@ -51,5 +61,20 @@ public class ControladorReservaciones {
     public boolean delete(@PathVariable("id") int reservationId) {
         return servicio.deleteReservation(reservationId);
     }
+    
+    @GetMapping("/report-status")
+    public StatusReservas getReservas(){
+        return servicio.getRepStatusRes();
+    }
+    
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+     public List<Reservaciones> getReservasTiempo (@PathVariable("dateOne")String dateOne, @PathVariable("dateTwo")String dateTwo ){
+         return servicio.reporteTiempoServicio(dateOne, dateTwo);
+     }
+     
+     @GetMapping("/report-clients")
+     public List<ContadorClientes> getClientes(){
+         return servicio.reporteClientesServicio();
+     }
     
 }

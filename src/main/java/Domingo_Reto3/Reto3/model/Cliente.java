@@ -1,7 +1,18 @@
-package Domingo_Reto3.Reto3;
+package Domingo_Reto3.Reto3.model;
 
-//@author Nigth Crawler
+/**
+ * Cliente
+ * Esta clase define los campos de la tabla Cliente
+ * Define las relaciones con las tablas Mensaje y Reservaciones
+ * Es un Entity que se almacena con el nombre <h2>Cliente<h2>
+ * 
+ * @since 2021-10-22
+ * @version 3.0
+ * @author Mateo Pachón
+ * 
+ */
 
+import Domingo_Reto3.Reto3.model.Mensaje;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
@@ -20,20 +31,23 @@ public class Cliente implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Atributos
     private Integer idClient;
     private String email;
     private String password;
     private String name;
     private Integer age;
     
-     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
+    //Relaciones
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
     @JsonIgnoreProperties("client")
     public List<Mensaje>messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
     @JsonIgnoreProperties("client")
     public List<Reservaciones>reservations;
-
+    
+    //Getters y Setters
     public Integer getIdClient() {
         return idClient;
     }

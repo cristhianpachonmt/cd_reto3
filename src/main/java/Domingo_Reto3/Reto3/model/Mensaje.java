@@ -1,6 +1,16 @@
-package Domingo_Reto3.Reto3;
+package Domingo_Reto3.Reto3.model;
 
-//@author Nigth Crawler
+/**
+ * Mensaje
+ * Esta clase define los campos de la tabla Mensaje
+ * Define las relaciones con las tablas Quadbike y Cliente
+ * Es un Entity que se almacena con el nombre <h2>Mensaje<h2>
+ * 
+ * @since 2021-10-22
+ * @version 3.0
+ * @author Mateo Pachón
+ * 
+ */
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
@@ -17,11 +27,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "message")
 public class Mensaje implements Serializable {
-      @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    //Atributos
     private Integer idMessage;
     private String messageText;
     
+    //Relaciones
     @ManyToOne
     @JoinColumn(name="id")
     @JsonIgnoreProperties({"messages", "client", "reservations"})
@@ -31,7 +44,8 @@ public class Mensaje implements Serializable {
     @JoinColumn(name="clientId")
     @JsonIgnoreProperties({"messages", "reservations", "client"})
     private Cliente client;
-
+    
+    //Getters y Setters
     public Integer getIdMessage() {
         return idMessage;
     }

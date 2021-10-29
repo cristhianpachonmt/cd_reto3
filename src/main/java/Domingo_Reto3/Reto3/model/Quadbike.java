@@ -1,6 +1,20 @@
-package Domingo_Reto3.Reto3;
+package Domingo_Reto3.Reto3.model;
 
-//@author Nigth Crawler
+
+/**
+ * Quadbike
+ * Esta clase define los campos de la tabla Quadbike
+ * Define las relaciones con las tablas Categoria, Mensaje y Reservaciones
+ * Es un Entity que se almacena con el nombre <h2>Quadbike<h2>
+ * 
+ * @since 2021-10-22
+ * @version 3.0
+ * @author Mateo Pachón
+ * 
+ */
+
+import Domingo_Reto3.Reto3.model.Mensaje;
+import Domingo_Reto3.Reto3.model.Categoria;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
@@ -16,29 +30,33 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "quadbike")
-public class Quadbike implements Serializable{
+public class Quadbike implements Serializable{    
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    //Atributos
     private Integer id;
     private String name;
     private String brand;
     private Integer year;
     private String description;
     
+    //Relaciones
     @ManyToOne
     @JoinColumn(name = "categoryId")
     @JsonIgnoreProperties("quadbikes")
     private Categoria category;
 
-     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "quadbike")
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "quadbike")
     @JsonIgnoreProperties({"quadbike", "client"})
     private List<Mensaje> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "quadbike")
     @JsonIgnoreProperties({"quadbike", "client"})
     private List<Reservaciones> reservations;
-
+    
+    //Getters y Setters
     public Integer getId() {
         return id;
     }

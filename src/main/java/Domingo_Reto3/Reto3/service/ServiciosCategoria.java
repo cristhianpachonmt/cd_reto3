@@ -1,5 +1,16 @@
-package Domingo_Reto3.Reto3;
+package Domingo_Reto3.Reto3.service;
 
+/**
+ * Servicios CRUD de la tabla Categoria * 
+ * 
+ * @since 2021-10-22
+ * @version 3.0
+ * @author Mateo Pachón
+ * 
+ */
+
+import Domingo_Reto3.Reto3.repository.RepositorioCategoria;
+import Domingo_Reto3.Reto3.model.Categoria;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,16 @@
-package Domingo_Reto3.Reto3;
+package Domingo_Reto3.Reto3.model;
 
-//@author Nigth Crawler
+/**
+ * Categoria
+ * Esta clase define los campos de la tabla Categoria
+ * Define la relaciones con la tabla Quadbike
+ * Es un Entity que se almacena con el nombre <h2>Categoria<h2>
+ * 
+ * @since 2021-10-22
+ * @version 3.0
+ * @author Mateo Pachón
+ * 
+ */
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
@@ -18,14 +28,18 @@ import javax.persistence.Table;
 public class Categoria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    //Atributos
     private Integer id;
     private String name;
     private String description;
     
+    //Relaciones
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="category")
     @JsonIgnoreProperties("category")
     private List<Quadbike> quadbikes;
-
+    
+    //Getters y Setters
     public Integer getId() {
         return id;
     }

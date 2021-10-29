@@ -1,5 +1,16 @@
-package Domingo_Reto3.Reto3;
+package Domingo_Reto3.Reto3.controller;
 
+/**
+ * Controlador de los servicios CRUD de la tabla Cliente
+ * 
+ * @since 2021-10-22
+ * @version 3.0
+ * @author Mateo Pachón
+ * 
+ */
+
+import Domingo_Reto3.Reto3.service.ServiciosCliente;
+import Domingo_Reto3.Reto3.model.Cliente;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,36 +28,39 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/Quadbike")
+@RequestMapping("/api/Client")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class ControladorQuadbike {
-      @Autowired
-    private ServiciosQuadbike servicio;
+public class ControladorCliente {
+     @Autowired
+    private ServiciosCliente servicio;
+  
     @GetMapping("/all")
-    public List<Quadbike> getQuadbike(){
+    public List<Cliente> getClients(){
         return servicio.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Quadbike> getQuadbike(@PathVariable("id") int quadbikeId) {
-        return servicio.getQuadbike(quadbikeId);
+    public Optional<Cliente> getClient(@PathVariable("id") int clientId) {
+        return servicio.getClient(clientId);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Quadbike save(@RequestBody Quadbike quadbike) {
-        return servicio.save(quadbike);
+    public Cliente save(@RequestBody Cliente client) {
+        return servicio.save(client);
     }
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Quadbike update(@RequestBody Quadbike quadbike) {
-        return servicio.update(quadbike);
+    public Cliente update(@RequestBody Cliente client) {
+        return servicio.update(client);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int quadbikeId) {
-        return servicio.deleteQuadbike(quadbikeId);
+    public boolean delete(@PathVariable("id") int clientId) {
+        return servicio.deleteClient(clientId);
     }
+    
+    
     
 }

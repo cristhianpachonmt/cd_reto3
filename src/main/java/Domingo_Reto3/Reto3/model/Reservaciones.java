@@ -1,7 +1,19 @@
-package Domingo_Reto3.Reto3;
+package Domingo_Reto3.Reto3.model;
 
-//@author Nigth Crawler
+/**
+ * Reservaciones
+ * Esta clase define los campos de la tabla Reservaciones
+ * Define las relaciones con las tablas Quadbike y Cliente
+ * Es un Entity que se almacena con el nombre <h2>Reservaciones<h2>
+ * 
+ * @since 2021-10-22
+ * @version 3.0
+ * @author Mateo Pachón
+ * 
+ */
 
+import Domingo_Reto3.Reto3.model.Quadbike;
+import Domingo_Reto3.Reto3.model.Cliente;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
@@ -21,11 +33,15 @@ public class Reservaciones implements Serializable  {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
+    //Atributos
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
     private String status="created";
     
+    
+    //Relaciones
     @ManyToOne
     @JoinColumn(name = "id")
     @JsonIgnoreProperties("reservations")
@@ -35,9 +51,10 @@ public class Reservaciones implements Serializable  {
     @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"reservations","messages"})
     private Cliente client;
-
-    private String score; //depende el grupo
-
+    private String score;
+    
+    
+    //Getters y Setters
     public Integer getIdReservation() {
         return idReservation;
     }

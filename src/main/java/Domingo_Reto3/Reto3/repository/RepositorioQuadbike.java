@@ -1,7 +1,16 @@
-package Domingo_Reto3.Reto3;
+package Domingo_Reto3.Reto3.repository;
 
-//@author Nigth Crawler
+/**
+ * Repository que es manejado por JPA de la tabla y clase Quadbike
+ * 
+ * @since 2021-10-22
+ * @version 3.0
+ * @author Mateo Pachón
+ * 
+ */
 
+import Domingo_Reto3.Reto3.interfaces.InterfaceQuadbike;
+import Domingo_Reto3.Reto3.model.Quadbike;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
