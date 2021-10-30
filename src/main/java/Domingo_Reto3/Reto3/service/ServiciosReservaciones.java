@@ -22,23 +22,34 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author USUARIO
- */
+
 @Service
-public class ServiciosReservaciones {
+public class ServiciosReservaciones {    
+    /**
+     * Creación de variable metodosCrud qu es de tipo Repositorio
+     */
     @Autowired
     private RepositorioReservaciones metodosCrud;
-
+    /**
+     * Este método es para obtener todos los datos de la tabla Reservaciones
+     * @return List de clase Reservacion
+     */
     public List<Reservaciones> getAll(){
         return metodosCrud.getAll();
     }
-
+    /**
+     * Este metodo para obtener los datos de la tabla reservaciones por Id
+     * @param reservationId
+     * @return Optional de clase Reservacion
+     */
     public Optional<Reservaciones> getReservation(int reservationId) {
         return metodosCrud.getReservation(reservationId);
     }
-
+    /**
+     * Metodo para ingresar datos en la tabla reservaciones
+     * @param reservation
+     * @return valor de calse Reservacion
+     */
     public Reservaciones save(Reservaciones reservation){
         if(reservation.getIdReservation()==null){
             return metodosCrud.save(reservation);
@@ -51,7 +62,11 @@ public class ServiciosReservaciones {
             }
         }
     }
-
+    /**
+     * Metodo para actualizar un dato de la tabla Reservaciones
+     * @param reservation
+     * @return valor de calse Reservacion
+     */
     public Reservaciones update(Reservaciones reservation){
         if(reservation.getIdReservation()!=null){
             Optional<Reservaciones> e= metodosCrud.getReservation(reservation.getIdReservation());
@@ -83,7 +98,11 @@ public class ServiciosReservaciones {
         }).orElse(false);
         return aBoolean;
     }    
-    
+    /**
+     * Metodo para borrar datos de la tabla Reservaciones por Id
+     * @param reservationId
+     * @return boolean
+     */
     public StatusReservas getRepStatusRes(){
         List<Reservaciones>completed = metodosCrud.ReservationStatus("completed");
         List<Reservaciones>cancelled = metodosCrud.ReservationStatus("cancelled");        
