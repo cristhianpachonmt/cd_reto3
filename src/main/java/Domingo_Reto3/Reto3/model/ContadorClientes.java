@@ -19,12 +19,13 @@ public class ContadorClientes {
         this.total = total;
     }
 
-    public Cliente getCliente() {
+    public Cliente getClient() {
         return client;
     }
 
-    public void setCliente(Cliente client) {
+    public void setClient(Cliente client) {
         this.client = client;
     }
+
     
 }
